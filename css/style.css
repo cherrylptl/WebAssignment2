@@ -1,0 +1,143 @@
+/* styles.css */
+
+/* Global Styles */
+body {
+    background-color: #121212;
+    /* Dark background */
+    font-family: 'Poppins', cursive;
+    font-size: 20px;
+    margin: 0px auto;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+.site-header {
+    background-color: #212121;
+    /* Dark gray header background */
+    padding: 10px;
+    text-align: center;
+    /* Center-align the content within the header */
+}
+
+.logo {
+    margin: 0;
+    font-size: 36px;
+}
+
+.logo a {
+    color: #1db954;
+    /* Green text */
+    text-decoration: none;
+    font-weight: bold;
+    /* Bold font */
+}
+
+.w50 {
+    width: 100%;
+    float: left;
+    margin: 1%;
+}
+
+.clear {
+    clear: both;
+}
+
+#errors {
+    color: #fff;
+    /* White text */
+    font-family: 'Bilbo Swash Caps', cursive;
+    font-size: 26px;
+    line-height: 34px;
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+    border-radius: 10px;
+}
+
+form,
+.formData {
+    width: 700px;
+    border: 3px solid #fff;
+    /* White border */
+    box-shadow: 0 0 10px #535353;
+    /* Dark gray box shadow */
+    padding: 30px;
+    margin: 10px auto;
+    color: #fff;
+    /* White text */
+    background-color: #212121;
+    /* Dark background */
+    border-radius: 20px;
+}
+
+label {
+    width: 170px;
+    display: inline-block;
+    font-size: 18px;
+    color: #fff;
+    /* White text */
+}
+
+input:not([type="radio"]),
+select {
+    font-size: 16px;
+    font-family: 'Poppins', cursive;
+    padding: 5px 10px;
+}
+
+input:not([type="radio"]) {
+    width: 500px;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+select {
+    width: 520px;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.input-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.creditcard-expiry {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0px;
+}
+
+
+
+#expirydate,
+#year {
+    width: 34%;
+}
+
+input[type="submit"] {
+    width: 100%;
+    font-size: 22px;
+    background-color: #1db954;
+    /* Pink */
+    color: #fff;
+    /* White text */
+    font-family: 'Poppins', cursive;
+    border: 0px;
+    padding: 10px;
+    height: 50px;
+    box-shadow: 4px 4px 0px #1db954;
+    /* Dark pink shadow */
+    border-radius: 8px;
+}
+
+input[type="submit"]:active {
+    box-shadow: -4px -4px 0px #1db954;
+    /* Dark pink shadow on active state */
+}

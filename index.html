@@ -1,14 +1,118 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Assignment 2 - Forms and Validations</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="js/custom.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Bilbo+Swash+Caps" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="logo"><a href="#" class="green-text">QuantumByte Solutions</a></h1>
+        </div>
+    </header>
+    <main>
+        <section class="w50">
+            <form name="myform" method="Post" onsubmit="return formSubmit();" action="">
+                <h1>Customer Details</h1>
+                <label>Name:</label>
+                <input id="name" placeholder="First Last" type="text" name="name"><br />
 
+                <label>Email:</label>
+                <input id="email" placeholder="email@domain.com" type="email" name="email"><br />
+
+                <label>Phone:</label>
+                <input id="phone" placeholder="123-123-1234" type="phone" name="phone"><br />
+
+                <label>Address:</label>
+                <input id="address" placeholder="Address" type="address" name="address"><br />
+
+                <label> City:</label>
+                <input type="city" placeholder="City" id="city" name="city" required>
+
+
+                <label>Province:</label>
+                <select id="province" name="province" required>
+                    <option value="" disabled selected>Select Province</option>
+                    <option value="AB">Alberta</option>
+                    <option value="BC">British Columbia</option>
+                    <option value="MB">Manitoba</option>
+                    <option value="NB">New Brunswick</option>
+                    <option value="BFL">Newfoundland and Labrador</option>
+                    <option value="NT">Northwest Territories</option>
+                    <option value="NS">Nova Scotia</option>
+                    <option value="NU">Nunavut</option>
+                    <option value="ON">Ontario</option>
+                    <option value="PEI">Prince Edward Island</option>
+                    <option value="QU">Quebec</option>
+                    <option value="SA">Saskatchewan</option>
+                    <option value="YU">Yukon</option>
+                </select>
+
+
+                <h1>Card Details</h1>
+
+                <label>Credit Card:</label>
+                <input id="creditcard" placeholder="1234-1234-1234-1234" type="creditcard" name="credicard"><br />
+
+                <div class="creditcard-expiry">
+                    <label for="expirydate">Expiry Date:</label>
+                    <input id="expirydate" placeholder="MMM" type="expirydate" name="expirydate">
+
+
+                    <input id="year" placeholder="YYYY" type="year" name="year">
+                </div>
+
+                <h1>Password</h1>
+                <label>Password:</label>
+                <input id="password" placeholder="Password" type="password" name="password"><br />
+
+                <label>Confirm Password:</label>
+                <input id="confirmPassword" placeholder="Confirmpassword" type="confirmPassword"
+                    name="confirmPassword"><br />
+
+                <h1>Select Products</h1>
+
+                <div class="product">
+                    <label for="product1">Laptop ($100):</label>
+                    <input type="number" id="product1" name="product1" min="0" value="0" data-price="100">
+                </div>
+
+                <div class="product">
+                    <label for="product2">Keyboard ($10):</label>
+                    <input type="number" id="product2" name="product2" min="0" value="0" data-price="10">
+                </div>
+
+                <div class="product">
+                    <label for="product3">Mouse ($10):</label>
+                    <input type="number" id="product3" name="product3" min="0" value="0" data-price="10">
+                </div>
+
+                <div class="product">
+                    <label for="product4">SSD ($20):</label>
+                    <input type="number" id="product4" name="product4" min="0" value="0" data-price="20">
+                </div>
+
+                <br>
+
+                <input type="submit" value="Submit">
+                <p id="errors"></p>
+            </form>
+        </section>
+        <section class="w50">
+            <div class="formData">
+                <p id="formResult">This is where the form data will show up.</p>
+            </div>
+        </section>
+        <div class="clear"></div>
+    </main>
 </body>
 
 </html>
