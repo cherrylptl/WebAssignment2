@@ -1,127 +1,171 @@
-/*
-    The function formSubmit() is called when the form "myform" is submitted.
-    It runs some validations and shows the output.
-*/
 function formSubmit() {
+    var myOutput = '';
+    var errors = '';
 
-    //return true; // uncomment this line to bypass the validations
-
-    var myOutput = ''; // we will use this to store the output of the form
-    var errors = ''; // we will use this to store any error messages.
-
-    // Fetching the values of all the fields entered by the user.
-
-    // Using getElementById for most of the fields as they have just one
-    // input field unlike radio buttons which have multiple.
+    // Fetching input values from the form
     var name = document.getElementById('name').value;
     var email = document.getElementById('email').value;
-    var postcode = document.getElementById('postcode').value;
     var phone = document.getElementById('phone').value;
-    var campus = document.getElementById('campus').value;
-    var tickets = document.getElementById('tickets').value;
-    tickets = parseInt(tickets);//making sure that the string is converted to number
+    var address = document.getElementById('address').value;
+    var city = document.getElementById('city').value;
+    var postcode = document.getElementById('postcode').value;
+    var province = document.getElementById('province').value;
+    var creditcard = document.getElementById('creditcard').value;
+    var expirydate = document.getElementById('expirydate').value;
+    var year = document.getElementById('year').value;
+    var password = document.getElementById('password').value;
+    var confirmPassword = document.getElementById('confirmPassword').value;
+    var product1 = document.getElementById('product1').value;
+    var product2 = document.getElementById('product2').value;
+    var product3 = document.getElementById('product3').value;
+    var product4 = document.getElementById('product4').value;
 
-    // We use getElementsByName to fetch the radio buttons as we do not know
-    // which one the user will select. This returns us an array of objects.
-    var lunch = document.getElementsByName('lunch');
+    // Name validation
+    if (name.trim() === '') {
+        errors += 'Name is required.<br>';
+    }
 
-
-    var lunch_index = -1;
-    /* 
-        Setting lunch_index as -1 as -1 is never an index in an array.
-        If the value of lunch_index remains -1 after the execution of the 
-        next for loop, that means the user did not check any value for lunch.
-    */
-
-    // Iterating through all the radio buttons to see which one was selected.
-    for (var i = 0; i < lunch.length; i++) {
-        if (lunch[i].checked) {
-            lunch_index = i; // storing the index that the user selected
-            break;
+    // Email validation
+    if (email.trim() === '') {
+        errors += 'Email is required.<br>';
+    } else {
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            errors += 'Email is not valid.<br>';
         }
     }
 
-    // Checking if any of the radio buttons was selected
-    if (lunch_index > -1) {
-        lunch = lunch[lunch_index].value;
-    }
-    else {
-        // User did not select any value for lunch so concatenating that error to the list
-        errors += 'You did not select any value for lunch<br/>';
-    }
-
-
-    // Writing a regular expression to validate Post Code
-    // Post code format example is N2E 1A6
-
-    var postcoderegex = /^[A-Z][0-9][A-Z]\s[0-9][A-Z][0-9]$/;
-
-    // Converting the postcode to uppercase before testing
-    postcode = postcode.toUpperCase();
-
-    // Testing if the postcode fits the pattern
-    if (postcoderegex.test(postcode)) { // Returns true if postcode satisfies the pattern
-        errors += ''; // No error in postcode
-    }
-    else {
-        errors += 'Post code is not in correct format <br/>'; // Error found in postcode
-    }
-
-    // Writing a regular expression to validate Phone
-    // Phone format example is 123-123-1234 or 123.123.1234
-    // or (123)-(123)-(1234) or (123).(123).(1234) or 1231231234
-    // or 123/123/1234 or (123)/123/1234
-    // or (123).123.1234 or (123)-123-1234 and some more that satisfy the rules
-
-    var phoneregex = /^\(?(\d{3})\)?[\.\-\/\s]?(\d{3})[\.\-\/\s]?(\d{4})$/;
-
-    // Testing if the phone fits the pattern
-    if (phoneregex.test(phone)) { // Returns true if phone satisfies the pattern
-        errors += ''; // No error in phone
-    }
-    else {
-        // Error found in phone; concatenating to the existing list of errors
-        errors += 'Phone is not in correct format <br/>';
-    }
-
-    // Comparing the errors string if any errors were found.
-    if (errors.trim() != '') { // trim is the function that trims any empty spaces from front or back
-        // Showing the errors
-        document.getElementById('errors').innerHTML = errors + '-- Please fix the above errors --';
-        document.getElementById('errors').style.border = '2px dashed white';
-    }
-    else {
-        // If no errors found
-
-        var cost = 0; // setting a variable to store cost
-
-        if (tickets > 0) {// if tickets were selected
-            cost = 100 * tickets;
+    // Phone validation
+    if (phone.trim() === '') {
+        errors += 'Phone is required.<br>';
+    } else {
+        var phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
+        if (!phoneRegex.test(phone)) {
+            errors += 'Phone is not valid. Please enter in the format xxx-xxx-xxxx.<br>';
         }
-        if (lunch == 'yes') {//if taking lunch
-            cost += 60;//add 60 to the total cost
+    }
+
+    // Address validation
+    if (address.trim() === '') {
+        errors += 'Address is required.<br>';
+    }
+
+    // City validation
+    if (city.trim() === '') {
+        errors += 'City is required.<br>';
+    }
+
+    // Postcode validation
+    var postcodeRegex = /^[A-Z]\d[A-Z] \d[A-Z]\d$/;
+    if (postcode.trim() === '') {
+        errors += 'Postcode is required.<br>';
+    } else if (!postcodeRegex.test(postcode)) {
+        errors += 'Postcode is not in correct format. Please enter in the format X0X 0X0.<br>';
+    }
+
+    // Province validation
+    if (province === '') {
+        errors += 'Please select a province.<br>';
+    }
+
+    // Credit Card validation
+    if (creditcard.trim() === '') {
+        errors += 'Credit Card number is required.<br>';
+    } else {
+        var creditcardRegex = /^\d{4}-\d{4}-\d{4}-\d{4}$/;
+        if (!creditcardRegex.test(creditcard)) {
+            errors += 'Credit Card is not valid. Please enter in the format xxxx-xxxx-xxxx-xxxx.<br>';
         }
+    }
 
-        tax = cost * 0.13;
+    // Expiry Date validation
+    if (expirydate.trim() === '' || year.trim() === '') {
+        errors += 'Expiry Date is required.<br>';
+    }
 
-        total = cost + tax;
+    // Credit Card Expiry Month validation
+    var monthRegex = /^[A-Za-z]{3}$/;
+    if (expirydate.trim() === '') {
+        errors += 'Credit Card Expiry Month is required.<br>';
+    } else if (!monthRegex.test(expirydate)) {
+        errors += 'Credit Card Expiry Month is not valid. Please enter in the format MMM (e.g., NOV).<br>';
+    }
 
-        // Preparing the myOutput
-        myOutput = `Name: ${name} <br>
-                    Email: ${email} <br>
-                    Lunch: ${lunch}<br>
-                    Campus: ${campus}<br>
-                    Sub Total: $${cost.toFixed(2)}<br>
-                    Tax: $${tax.toFixed(2)}<br>
-                    Total: $${total.toFixed(2)}<br>
-                    `;
-        // removing any error messages
-        document.getElementById('errors').innerHTML = '';
-        document.getElementById('errors').style.border = '0px';
-        // Showing the values put in by the user and the total cost
+    // Credit Card Expiry Year validation
+    var yearRegex = /^\d{4}$/;
+    if (year.trim() === '') {
+        errors += 'Credit Card Expiry Year is required.<br>';
+    } else if (!yearRegex.test(year)) {
+        errors += 'Credit Card Expiry Year is not valid. Please enter in the format yyyy (e.g., 2021).<br>';
+    }
+
+    // Password validation
+    if (password.trim() === '') {
+        errors += 'Password is required.<br>';
+    }
+
+    // Confirm Password validation
+    if (confirmPassword.trim() === '') {
+        errors += 'Confirm Password is required.<br>';
+    } else if (password !== confirmPassword) {
+        errors += 'Passwords do not match.<br>';
+    }
+
+    // Product validation
+    if (product1 === '0' && product2 === '0' && product3 === '0' && product4 === '0') {
+        errors += 'Minimum Purchase should be $10.<br>';
+    }
+
+    // If there are no errors, proceed to generate receipt
+    if (errors.trim() === '') {
+        // Generate receipt message
+        var totalCost = (parseFloat(product1) * 100) + (parseFloat(product2) * 10) + (parseFloat(product3) * 10) + (parseFloat(product4) * 20);
+        var tax = totalCost * 0.13;
+        var totalAmount = totalCost + tax;
+
+        myOutput += '<h1>Receipt</h1>';
+        myOutput += '<p>Name: ' + name + '</p>';
+        myOutput += '<p>Email: ' + email + '</p>';
+        myOutput += '<p>Phone: ' + phone + '</p>';
+        myOutput += '<p>Address: ' + address + '</p>';
+        myOutput += '<p>City: ' + city + '</p>';
+        myOutput += '<p>Postcode: ' + postcode + '</p>';
+        myOutput += '<p>Province: ' + province + '</p>';
+        myOutput += '<p>Credit Card: ' + creditcard + '</p>';
+        myOutput += '<p>Expiry Date: ' + expirydate + '/' + year + '</p>';
+        myOutput += '<p>Total Cost: $' + totalCost.toFixed(2) + '</p>';
+        myOutput += '<p>Tax: $' + tax.toFixed(2) + '</p>';
+        myOutput += '<p>Total Amount: $' + totalAmount.toFixed(2) + '</p>';
+
+        // Display receipt in the designated area
         document.getElementById('formResult').innerHTML = myOutput;
-    }
 
-    // Return false will stop the form from submitting and keep it on the current page.
-    return false;
+        // Clear form fields
+        document.getElementById('name').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('phone').value = '';
+        document.getElementById('address').value = '';
+        document.getElementById('city').value = '';
+        document.getElementById('postcode').value = '';
+        document.getElementById('province').selectedIndex = 0;
+        document.getElementById('creditcard').value = '';
+        document.getElementById('expirydate').value = '';
+        document.getElementById('year').value = '';
+        document.getElementById('password').value = '';
+        document.getElementById('confirmPassword').value = '';
+        document.getElementById('product1').value = '0';
+        document.getElementById('product2').value = '0';
+        document.getElementById('product3').value = '0';
+        document.getElementById('product4').value = '0';
+
+        // Clear any previous error messages
+        document.getElementById('errors').innerHTML = '';
+
+        // Return false to prevent form submission (since we're handling submission here)
+        return false;
+    } else {
+        // Display errors if there are any
+        document.getElementById('errors').innerHTML = errors;
+        return false;
+    }
 }

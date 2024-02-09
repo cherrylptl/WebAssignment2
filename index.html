@@ -6,16 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Assignment 2 - Forms and Validations</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="js/custom.js"></script>
+    <script type="text/javascript" src="js\custom.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Bilbo+Swash+Caps" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css\style.css">
 </head>
 
 <body>
     <header class="site-header">
         <div class="container">
-            <h1 class="logo"><a href="#" class="green-text">QuantumByte Solutions</a></h1>
+            <h1 class="logo"><a href="#" class="green-text">QUANTUMBYTE SOLUTIONS</a></h1>
         </div>
     </header>
     <main>
@@ -29,17 +29,19 @@
                 <input id="email" placeholder="email@domain.com" type="email" name="email"><br />
 
                 <label>Phone:</label>
-                <input id="phone" placeholder="123-123-1234" type="phone" name="phone"><br />
+                <input id="phone" placeholder="123-123-1234" type="text" name="phone"><br />
 
                 <label>Address:</label>
-                <input id="address" placeholder="Address" type="address" name="address"><br />
+                <input id="address" placeholder="Address" type="text" name="address"><br />
 
-                <label> City:</label>
-                <input type="city" placeholder="City" id="city" name="city" required>
+                <label>City:</label>
+                <input id="city" placeholder="City" type="text" name="city"><br />
 
+                <label>Postcode:</label>
+                <input id="postcode" placeholder="X0X 0X0" type="text" name="postcode"><br />
 
                 <label>Province:</label>
-                <select id="province" name="province" required>
+                <select id="province" name="province">
                     <option value="" disabled selected>Select Province</option>
                     <option value="AB">Alberta</option>
                     <option value="BC">British Columbia</option>
@@ -56,18 +58,17 @@
                     <option value="YU">Yukon</option>
                 </select>
 
-
                 <h1>Card Details</h1>
 
                 <label>Credit Card:</label>
-                <input id="creditcard" placeholder="1234-1234-1234-1234" type="creditcard" name="credicard"><br />
+                <input id="creditcard" placeholder="1234-1234-1234-1234" type="text" name="creditcard"><br />
 
                 <div class="creditcard-expiry">
                     <label for="expirydate">Expiry Date:</label>
-                    <input id="expirydate" placeholder="MMM" type="expirydate" name="expirydate">
+                    <input id="expirydate" placeholder="MMM" type="text" name="expirydate">
 
 
-                    <input id="year" placeholder="YYYY" type="year" name="year">
+                    <input id="year" placeholder="YYYY" type="text" name="year">
                 </div>
 
                 <h1>Password</h1>
@@ -75,8 +76,7 @@
                 <input id="password" placeholder="Password" type="password" name="password"><br />
 
                 <label>Confirm Password:</label>
-                <input id="confirmPassword" placeholder="Confirmpassword" type="confirmPassword"
-                    name="confirmPassword"><br />
+                <input id="confirmPassword" placeholder="Confirm Password" type="password" name="confirmPassword"><br />
 
                 <h1>Select Products</h1>
 
@@ -103,12 +103,15 @@
                 <br>
 
                 <input type="submit" value="Submit">
-                <p id="errors"></p>
+                <p id="errors">
+                    <span id="cityError"></span><br>
+                    <span id="provinceError"></span><br>
+                </p>
             </form>
         </section>
         <section class="w50">
             <div class="formData">
-                <p id="formResult">This is where the form data will show up.</p>
+                <p id="formResult">This is where the receipt will show.</p>
             </div>
         </section>
         <div class="clear"></div>
