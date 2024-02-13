@@ -1,8 +1,9 @@
 function formSubmit() {
+
     var myOutput = '';
     var errors = '';
 
-    // get input data from the form
+    //input form
     var name = document.getElementById('name').value;
     var email = document.getElementById('email').value;
     var phone = document.getElementById('phone').value;
@@ -20,12 +21,12 @@ function formSubmit() {
     var product3 = document.getElementById('product3').value;
     var product4 = document.getElementById('product4').value;
 
-    // Name 
+    //name 
     if (name.trim() === '') {
         errors += 'Name is required.<br>';
     }
 
-    // Email 
+    //email 
     if (email.trim() === '') {
         errors += 'Email is required.<br>';
     } else {
@@ -35,7 +36,7 @@ function formSubmit() {
         }
     }
 
-    // Phone 
+    //phone number
     if (phone.trim() === '') {
         errors += 'Phone is required.<br>';
     } else {
@@ -45,17 +46,17 @@ function formSubmit() {
         }
     }
 
-    // Address
+    //address
     if (address.trim() === '') {
         errors += 'Address is required.<br>';
     }
 
-    // City 
+    //city 
     if (city.trim() === '') {
         errors += 'City is required.<br>';
     }
 
-    // Postcode
+    //postcode
     var postcodeRegex = /^[A-Z]\d[A-Z] \d[A-Z]\d$/;
     if (postcode.trim() === '') {
         errors += 'Postcode is required.<br>';
@@ -63,12 +64,12 @@ function formSubmit() {
         errors += 'Postcode is not in correct format. Please enter in the format X0X 0X0.<br>';
     }
 
-    // Province 
+    //province 
     if (province === '') {
         errors += 'Please select a province.<br>';
     }
 
-    // Credit Card 
+    //credit card 
     if (creditcard.trim() === '') {
         errors += 'Credit Card number is required.<br>';
     } else {
@@ -78,12 +79,7 @@ function formSubmit() {
         }
     }
 
-    // Expiry Date 
-    // if (expirydate.trim() === '' || year.trim() === '') {
-    //     errors += 'Expiry Date is required.<br>';
-    // }
-
-    // Credit Card Expiry Month 
+    //credit card expiry month 
     var monthRegex = /^[A-Za-z]{3}$/;
     if (expirydate.trim() === '') {
         errors += 'Credit Card Expiry Month is required.<br>';
@@ -91,7 +87,7 @@ function formSubmit() {
         errors += 'Expiry Month is not valid. Please enter in the format MMM (ex-NOV).<br>';
     }
 
-    // Credit Card Expiry Year
+    //credit card expiry year
     var yearRegex = /^\d{4}$/;
     if (year.trim() === '') {
         errors += 'Credit Card Expiry Year is required.<br>';
@@ -99,30 +95,30 @@ function formSubmit() {
         errors += 'Credit Card Expiry Year is not valid. Please enter in the format YYYY (ex-2021).<br>';
     }
 
-    // Password 
+    //password 
     if (password.trim() === '') {
         errors += 'Password is required.<br>';
     }
 
-    // Confirm Password 
+    //confirm password 
     if (confirmPassword.trim() === '') {
         errors += 'Confirm Password is required.<br>';
     } else if (password !== confirmPassword) {
         errors += 'Passwords do not match.<br>';
     }
 
-    // Product 
+    //cal product
     if (product1 === '0' && product2 === '0' && product3 === '0' && product4 === '0') {
         errors += 'Minimum Purchase should be $10.<br>';
     }
 
-    // Calculate tax
+    //cal tax
     var taxRate = getTaxRate(province);
     if (taxRate === null) {
         errors += 'Tax rate for the selected province is not available.<br>';
     }
 
-    // generate receipt
+    //generate receipt
     if (errors.trim() === '') {
         var totalCost = (parseFloat(product1) * 100) + (parseFloat(product2) * 10) + (parseFloat(product3) * 10) + (parseFloat(product4) * 20);
         var tax = totalCost * taxRate;
@@ -155,10 +151,10 @@ function formSubmit() {
         myOutput += '<p>Total Amount: $' + totalAmount.toFixed(2) + '</p>';
 
 
-        // Display receipt
+        //show receipt
         document.getElementById('formResult').innerHTML = myOutput;
 
-        // Clear all fields
+        //clear all field
         document.getElementById('name').value = '';
         document.getElementById('email').value = '';
         document.getElementById('phone').value = '';
@@ -176,21 +172,19 @@ function formSubmit() {
         document.getElementById('product3').value = '0';
         document.getElementById('product4').value = '0';
 
-        // Clear error messages
+        //remove error
         document.getElementById('errors').innerHTML = '';
 
         return false;
     } else {
-        // Display error
+        //to show error
         document.getElementById('errors').innerHTML = errors;
         return false;
     }
 
-
-
-
 }
 
+//province wise tax
 function getTaxRate(province) {
     switch (province) {
         case 'AB':
