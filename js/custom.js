@@ -2,7 +2,7 @@ function formSubmit() {
     var myOutput = '';
     var errors = '';
 
-    // Fetching input values from the form
+    // get input data from the form
     var name = document.getElementById('name').value;
     var email = document.getElementById('email').value;
     var phone = document.getElementById('phone').value;
@@ -20,12 +20,12 @@ function formSubmit() {
     var product3 = document.getElementById('product3').value;
     var product4 = document.getElementById('product4').value;
 
-    // Name validation
+    // Name 
     if (name.trim() === '') {
         errors += 'Name is required.<br>';
     }
 
-    // Email validation
+    // Email 
     if (email.trim() === '') {
         errors += 'Email is required.<br>';
     } else {
@@ -35,7 +35,7 @@ function formSubmit() {
         }
     }
 
-    // Phone validation
+    // Phone 
     if (phone.trim() === '') {
         errors += 'Phone is required.<br>';
     } else {
@@ -45,17 +45,17 @@ function formSubmit() {
         }
     }
 
-    // Address validation
+    // Address
     if (address.trim() === '') {
         errors += 'Address is required.<br>';
     }
 
-    // City validation
+    // City 
     if (city.trim() === '') {
         errors += 'City is required.<br>';
     }
 
-    // Postcode validation
+    // Postcode
     var postcodeRegex = /^[A-Z]\d[A-Z] \d[A-Z]\d$/;
     if (postcode.trim() === '') {
         errors += 'Postcode is required.<br>';
@@ -63,12 +63,12 @@ function formSubmit() {
         errors += 'Postcode is not in correct format. Please enter in the format X0X 0X0.<br>';
     }
 
-    // Province validation
+    // Province 
     if (province === '') {
         errors += 'Please select a province.<br>';
     }
 
-    // Credit Card validation
+    // Credit Card 
     if (creditcard.trim() === '') {
         errors += 'Credit Card number is required.<br>';
     } else {
@@ -78,69 +78,87 @@ function formSubmit() {
         }
     }
 
-    // Expiry Date validation
-    if (expirydate.trim() === '' || year.trim() === '') {
-        errors += 'Expiry Date is required.<br>';
-    }
+    // Expiry Date 
+    // if (expirydate.trim() === '' || year.trim() === '') {
+    //     errors += 'Expiry Date is required.<br>';
+    // }
 
-    // Credit Card Expiry Month validation
+    // Credit Card Expiry Month 
     var monthRegex = /^[A-Za-z]{3}$/;
     if (expirydate.trim() === '') {
         errors += 'Credit Card Expiry Month is required.<br>';
     } else if (!monthRegex.test(expirydate)) {
-        errors += 'Credit Card Expiry Month is not valid. Please enter in the format MMM (e.g., NOV).<br>';
+        errors += 'Expiry Month is not valid. Please enter in the format MMM (ex-NOV).<br>';
     }
 
-    // Credit Card Expiry Year validation
+    // Credit Card Expiry Year
     var yearRegex = /^\d{4}$/;
     if (year.trim() === '') {
         errors += 'Credit Card Expiry Year is required.<br>';
     } else if (!yearRegex.test(year)) {
-        errors += 'Credit Card Expiry Year is not valid. Please enter in the format yyyy (e.g., 2021).<br>';
+        errors += 'Credit Card Expiry Year is not valid. Please enter in the format YYYY (ex-2021).<br>';
     }
 
-    // Password validation
+    // Password 
     if (password.trim() === '') {
         errors += 'Password is required.<br>';
     }
 
-    // Confirm Password validation
+    // Confirm Password 
     if (confirmPassword.trim() === '') {
         errors += 'Confirm Password is required.<br>';
     } else if (password !== confirmPassword) {
         errors += 'Passwords do not match.<br>';
     }
 
-    // Product validation
+    // Product 
     if (product1 === '0' && product2 === '0' && product3 === '0' && product4 === '0') {
         errors += 'Minimum Purchase should be $10.<br>';
     }
 
-    // If there are no errors, proceed to generate receipt
+    // Calculate tax
+    var taxRate = getTaxRate(province);
+    if (taxRate === null) {
+        errors += 'Tax rate for the selected province is not available.<br>';
+    }
+
+    // generate receipt
     if (errors.trim() === '') {
-        // Generate receipt message
         var totalCost = (parseFloat(product1) * 100) + (parseFloat(product2) * 10) + (parseFloat(product3) * 10) + (parseFloat(product4) * 20);
-        var tax = totalCost * 0.13;
+        var tax = totalCost * taxRate;
         var totalAmount = totalCost + tax;
 
-        myOutput += '<h1>Receipt</h1>';
-        myOutput += '<p>Name: ' + name + '</p>';
-        myOutput += '<p>Email: ' + email + '</p>';
-        myOutput += '<p>Phone: ' + phone + '</p>';
-        myOutput += '<p>Address: ' + address + '</p>';
-        myOutput += '<p>City: ' + city + '</p>';
-        myOutput += '<p>Postcode: ' + postcode + '</p>';
-        myOutput += '<p>Province: ' + province + '</p>';
-        myOutput += '<p>Credit Card: ' + creditcard + '</p>';
-        myOutput += '<p>Expiry Date: ' + expirydate + '/' + year + '</p>';
+        myOutput += '<p>Name : ' + name + '</p>';
+        myOutput += '<p>Email : ' + email + '</p>';
+        myOutput += '<p>Phone : ' + phone + '</p>';
+        myOutput += '<p>Address : ' + address + '</p>';
+        myOutput += '<p>City : ' + city + '</p>';
+        myOutput += '<p>Postcode : ' + postcode + '</p>';
+        myOutput += '<p>Province : ' + province + '</p>';
+        myOutput += '<p>Credit Card : ' + creditcard + '</p>';
+        myOutput += '<p>Expiry Date : ' + expirydate + '/' + year + '</p>';
+        myOutput += '<h3>List Of Products</h3>';
+        if (parseInt(product1) > 0) {
+            myOutput += '<li>Laptop : Quantity - ' + product1 + '</li>';
+        }
+        if (parseInt(product2) > 0) {
+            myOutput += '<li>Keyborad : Quantity - ' + product2 + '</li>';
+        }
+        if (parseInt(product3) > 0) {
+            myOutput += '<li>Mouse : Quantity - ' + product3 + '</li>';
+        }
+        if (parseInt(product4) > 0) {
+            myOutput += '<li>SSD : Quantity - ' + product4 + '</li>';
+        }
         myOutput += '<p>Total Cost: $' + totalCost.toFixed(2) + '</p>';
         myOutput += '<p>Tax: $' + tax.toFixed(2) + '</p>';
         myOutput += '<p>Total Amount: $' + totalAmount.toFixed(2) + '</p>';
 
-        // Display receipt in the designated area
+
+        // Display receipt
         document.getElementById('formResult').innerHTML = myOutput;
 
-        // Clear form fields
+        // Clear all fields
         document.getElementById('name').value = '';
         document.getElementById('email').value = '';
         document.getElementById('phone').value = '';
@@ -158,14 +176,51 @@ function formSubmit() {
         document.getElementById('product3').value = '0';
         document.getElementById('product4').value = '0';
 
-        // Clear any previous error messages
+        // Clear error messages
         document.getElementById('errors').innerHTML = '';
 
-        // Return false to prevent form submission (since we're handling submission here)
         return false;
     } else {
-        // Display errors if there are any
+        // Display error
         document.getElementById('errors').innerHTML = errors;
         return false;
+    }
+
+
+
+
+}
+
+function getTaxRate(province) {
+    switch (province) {
+        case 'AB':
+            return 0.05;
+        case 'BC':
+            return 0.12;
+        case 'MB':
+            return 0.12;
+        case 'NB':
+            return 0.15;
+        case 'BFL':
+            return 0.15;
+        case 'NT':
+            return 0.05;
+        case 'NS':
+            return 0.15;
+        case 'NU':
+            return 0.05;
+        case 'ON':
+            return 0.13;
+        case 'PEI':
+            return 0.15;
+        case 'QU':
+            return 0.14;
+        case 'SA':
+            return 0.11;
+        case 'YU':
+            return 0.05;
+
+        default:
+            return 0.0;
     }
 }

@@ -7,115 +7,129 @@
     <title>Assignment 2 - Forms and Validations</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="js\custom.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Bilbo+Swash+Caps" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css\style.css">
 </head>
 
 <body>
-    <header class="site-header">
+    <header class="header">
         <div class="container">
-            <h1 class="logo"><a href="#" class="green-text">QUANTUMBYTE SOLUTIONS</a></h1>
+            <h1 class="green-text">QUANTUMBYTE SOLUTIONS</h1>
         </div>
     </header>
+
     <main>
-        <section class="w50">
-            <form name="myform" method="Post" onsubmit="return formSubmit();" action="">
-                <h1>Customer Details</h1>
-                <label>Name:</label>
-                <input id="name" placeholder="First Last" type="text" name="name"><br />
+        <div class="main-container-grid">
 
-                <label>Email:</label>
-                <input id="email" placeholder="email@domain.com" type="email" name="email"><br />
+            <section>
 
-                <label>Phone:</label>
-                <input id="phone" placeholder="123-123-1234" type="text" name="phone"><br />
+                <div class="slider">
+                    <h1>Select Products</h1>
 
-                <label>Address:</label>
-                <input id="address" placeholder="Address" type="text" name="address"><br />
+                    <div class="product">
+                        <label for="product1">Laptop ($100):</label>
+                        <input type="number" id="product1" name="product1" min="0" value="0" data-price="100">
+                    </div>
 
-                <label>City:</label>
-                <input id="city" placeholder="City" type="text" name="city"><br />
+                    <div class="product">
+                        <label for="product2">Keyboard ($10):</label>
+                        <input type="number" id="product2" name="product2" min="0" value="0" data-price="10">
+                    </div>
 
-                <label>Postcode:</label>
-                <input id="postcode" placeholder="X0X 0X0" type="text" name="postcode"><br />
+                    <div class="product">
+                        <label for="product3">Mouse ($10):</label>
+                        <input type="number" id="product3" name="product3" min="0" value="0" data-price="10">
+                    </div>
 
-                <label>Province:</label>
-                <select id="province" name="province">
-                    <option value="" disabled selected>Select Province</option>
-                    <option value="AB">Alberta</option>
-                    <option value="BC">British Columbia</option>
-                    <option value="MB">Manitoba</option>
-                    <option value="NB">New Brunswick</option>
-                    <option value="BFL">Newfoundland and Labrador</option>
-                    <option value="NT">Northwest Territories</option>
-                    <option value="NS">Nova Scotia</option>
-                    <option value="NU">Nunavut</option>
-                    <option value="ON">Ontario</option>
-                    <option value="PEI">Prince Edward Island</option>
-                    <option value="QU">Quebec</option>
-                    <option value="SA">Saskatchewan</option>
-                    <option value="YU">Yukon</option>
-                </select>
-
-                <h1>Card Details</h1>
-
-                <label>Credit Card:</label>
-                <input id="creditcard" placeholder="1234-1234-1234-1234" type="text" name="creditcard"><br />
-
-                <div class="creditcard-expiry">
-                    <label for="expirydate">Expiry Date:</label>
-                    <input id="expirydate" placeholder="MMM" type="text" name="expirydate">
-
-
-                    <input id="year" placeholder="YYYY" type="text" name="year">
+                    <div class="product">
+                        <label for="product4">SSD ($20):</label>
+                        <input type="number" id="product4" name="product4" min="0" value="0" data-price="20">
+                    </div>
                 </div>
 
-                <h1>Password</h1>
-                <label>Password:</label>
-                <input id="password" placeholder="Password" type="password" name="password"><br />
-
-                <label>Confirm Password:</label>
-                <input id="confirmPassword" placeholder="Confirm Password" type="password" name="confirmPassword"><br />
-
-                <h1>Select Products</h1>
-
-                <div class="product">
-                    <label for="product1">Laptop ($100):</label>
-                    <input type="number" id="product1" name="product1" min="0" value="0" data-price="100">
+                <div class="slider">
+                    <h1>Receipt Details</h1>
+                    <p id="formResult">The receipt will show .</p>
                 </div>
 
-                <div class="product">
-                    <label for="product2">Keyboard ($10):</label>
-                    <input type="number" id="product2" name="product2" min="0" value="0" data-price="10">
-                </div>
+            </section>
 
-                <div class="product">
-                    <label for="product3">Mouse ($10):</label>
-                    <input type="number" id="product3" name="product3" min="0" value="0" data-price="10">
-                </div>
+            <div class="slider">
+                <form name="myform" method="Post" onsubmit="return formSubmit();" action="">
 
-                <div class="product">
-                    <label for="product4">SSD ($20):</label>
-                    <input type="number" id="product4" name="product4" min="0" value="0" data-price="20">
-                </div>
+                    <h1>Customer Details</h1>
 
-                <br>
+                    <label>Name:</label>
+                    <input id="name" placeholder="First Last" type="text" name="name" required>
 
-                <input type="submit" value="Submit">
-                <p id="errors">
-                    <span id="cityError"></span><br>
-                    <span id="provinceError"></span><br>
-                </p>
-            </form>
-        </section>
-        <section class="w50">
-            <div class="formData">
-                <p id="formResult">This is where the receipt will show.</p>
+                    <label>Email:</label>
+                    <input id="email" placeholder="email@domain.com" type="email" name="email" required>
+
+                    <label>Phone:</label>
+                    <input id="phone" placeholder="123-123-1234" type="text" name="phone" required>
+
+                    <label>Address:</label>
+                    <input id="address" placeholder="Address" type="text" name="address" required>
+
+                    <label>City:</label>
+                    <input id="city" placeholder="City" type="text" name="city" required>
+
+                    <label>Postcode:</label>
+                    <input id="postcode" placeholder="X0X 0X0" type="text" name="postcode" required>
+
+                    <label>Province:</label>
+                    <select id="province" name="province =" required>
+                        <option value="" disabled selected>Select Province</option>
+                        <option value="AB">Alberta</option>
+                        <option value="BC">British Columbia</option>
+                        <option value="MB">Manitoba</option>
+                        <option value="NB">New Brunswick</option>
+                        <option value="BFL">Newfoundland and Labrador</option>
+                        <option value="NT">Northwest Territories</option>
+                        <option value="NS">Nova Scotia</option>
+                        <option value="NU">Nunavut</option>
+                        <option value="ON">Ontario</option>
+                        <option value="PEI">Prince Edward Island</option>
+                        <option value="QU">Quebec</option>
+                        <option value="SA">Saskatchewan</option>
+                        <option value="YU">Yukon</option>
+                    </select>
+
+                    <br><br>
+
+                    <h1>Card Details</h1>
+
+                    <label>Credit Card:</label>
+                    <input id="creditcard" placeholder="1234-1234-1234-1234" type="text" name="creditcard" required>
+
+                    <div class="creditcard-expiry">
+                        <label for="expirydate">Expiry Date:</label>
+                        <input id="expirydate" placeholder="MMM" type="text" name="expirydate" required>
+                        <input id="year" placeholder="YYYY" type="text" name="year" required>
+                    </div>
+
+                    <h1>Password</h1>
+                    <label>Password:</label>
+                    <input id="password" placeholder="Password" type="password" name="password" required><br />
+
+                    <label>Confirm Password:</label>
+                    <input id="confirmPassword" placeholder="Confirm Password" type="password" name="confirmPassword"
+                        required>
+
+                    <br><br><br>
+
+                    <input type="submit" value="Place Order">
+                    <p id="errors">
+                        <span id="cityError"></span>
+                        <span id="provinceError"></span>
+                    </p>
+                </form>
             </div>
-        </section>
-        <div class="clear"></div>
+        </div>
     </main>
+    <footer>
+        <p>&copy; 2024 QUANTUMBYTE SOLUTIONS PVT LTD . All rights reserved.</p>
+    </footer>
 </body>
 
 </html>
