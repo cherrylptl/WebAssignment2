@@ -107,7 +107,7 @@ function formSubmit() {
         errors += 'Passwords do not match.<br>';
     }
 
-    //cal product
+    //minimum purchase
     if (product1 === '0' && product2 === '0' && product3 === '0' && product4 === '0') {
         errors += 'Minimum Purchase should be $10.<br>';
     }

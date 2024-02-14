@@ -6,7 +6,6 @@ body {
 }
 
 .main-container-grid {
-    /* padding-bottom: 20px; */
     padding: 20px;
     display: grid;
     grid-template-columns: 3fr 7fr;
@@ -41,10 +40,6 @@ body {
     font-size: 36px;
 }
 
-.rcontainer {
-    margin: 1%;
-}
-
 #errors {
     color: #b11f1f;
     font-family: 'Poppins', sans-serif;
@@ -56,14 +51,10 @@ body {
     border-radius: 10px;
 }
 
-form,
-.formData {
+form {
     width: 700px;
-
-    /* padding: 30px; */
     margin: 10px auto;
     color: #fff;
-    /* background-color: #212121; */
     border-radius: 20px;
 }
 
@@ -89,7 +80,6 @@ input:not([type="radio"]) {
 
 select {
     width: 524px;
-    /* margin-top: 10px; */
 }
 
 .creditcard-expiry {
