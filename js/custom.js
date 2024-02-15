@@ -177,6 +177,7 @@ function formSubmit() {
 
         return false;
     } else {
+        
         //to show error
         document.getElementById('errors').innerHTML = errors;
         return false;
