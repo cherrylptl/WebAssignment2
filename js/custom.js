@@ -1,5 +1,4 @@
 function formSubmit() {
-
     var myOutput = '';
     var errors = '';
 
@@ -91,7 +90,7 @@ function formSubmit() {
     var yearRegex = /^\d{4}$/;
     if (year.trim() === '') {
         errors += 'Credit Card Expiry Year is required.<br>';
-    } else if (!yearRegex.test(year)) {
+    } else if (!yearRegex.test(year) || year < 2023) {
         errors += 'Credit Card Expiry Year is not valid. Please enter in the format YYYY (ex-2021).<br>';
     }
 
@@ -107,20 +106,20 @@ function formSubmit() {
         errors += 'Passwords do not match.<br>';
     }
 
-    //minimum purchase
-    if (product1 === '0' && product2 === '0' && product3 === '0' && product4 === '0') {
-        errors += 'Minimum Purchase should be $10.<br>';
-    }
-
     //cal tax
     var taxRate = getTaxRate(province);
     if (taxRate === null) {
         errors += 'Tax rate for the selected province is not available.<br>';
     }
 
+    //minimum purchase
+    if (parseFloat(product1) * 100 + parseFloat(product2) * 5 + parseFloat(product3) * 4 + parseFloat(product4) * 5 < 10) {
+        errors += 'Minimum Purchase should be $10.<br>';
+    }
+
     //generate receipt
     if (errors.trim() === '') {
-        var totalCost = (parseFloat(product1) * 100) + (parseFloat(product2) * 10) + (parseFloat(product3) * 10) + (parseFloat(product4) * 20);
+        var totalCost = (parseFloat(product1) * 100) + (parseFloat(product2) * 5) + (parseFloat(product3) * 4) + (parseFloat(product4) * 5);
         var tax = totalCost * taxRate;
         var totalAmount = totalCost + tax;
 
@@ -150,7 +149,6 @@ function formSubmit() {
         myOutput += '<p>Tax: $' + tax.toFixed(2) + '</p>';
         myOutput += '<p>Total Amount: $' + totalAmount.toFixed(2) + '</p>';
 
-
         //show receipt
         document.getElementById('formResult').innerHTML = myOutput;
 
@@ -177,12 +175,11 @@ function formSubmit() {
 
         return false;
     } else {
-        
+
         //to show error
         document.getElementById('errors').innerHTML = errors;
         return false;
     }
-
 }
 
 //province wise tax
@@ -214,7 +211,6 @@ function getTaxRate(province) {
             return 0.11;
         case 'YU':
             return 0.05;
-
         default:
             return 0.0;
     }
